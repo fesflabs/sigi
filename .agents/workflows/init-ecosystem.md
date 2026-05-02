@@ -2,30 +2,34 @@
 description: description: Inicializa a arquitetura dockerizada do SIGI, implementando segurança de segredos (.env) e expondo as portas designadas pela spec de bootstrap.
 ---
 
-1. Leia minuciosamente o arquivo `docs/specs/sigi_bootstrap_architecture.md` para carregar as definições de portas, infraestrutura e governança.
+---
+description: Inicializa a arquitetura dockerizada do SIGI, configurando pastas, banco, segurança de ambiente e contêineres.
+---
 
-2. Crie o arquivo base de segredos `.env.example` definindo as variáveis necessárias para o PostgreSQL.
-// turbo
-echo "POSTGRES_USER=postgres\nPOSTGRES_PASSWORD=hmetal85\nPOSTGRES_DB=sigi_db" > .env.example
+1. Leia o arquivo `docs/specs/sigi_bootstrap_architecture.md` para carregar as definições de infraestrutura e portas.
 
-3. Torne o script da skill de gerenciamento de ambiente executável e invoque-a para proteger o projeto.
-// turbo
-chmod +x .agent/skills/env-manager/sync.sh && bash .agent/skills/env-manager/sync.sh
-
-4. Crie a estrutura de diretórios do ecossistema.
+2. Crie a estrutura de diretórios base.
 // turbo
 mkdir -p frontend backend
 
-5. Gere os arquivos `Dockerfile` dentro de `/backend` (configurado para expor a porta 8000) e de `/frontend` (configurado para expor a porta 3000).
+3. Configure o arquivo `.gitignore` para bloquear credenciais e arquivos de ambiente do agente.
+// turbo
+echo -e "\n# Variaveis de Ambiente\n.env\n# Agentes\n.agent/" >> .gitignore
 
-6. Gere o `docker-compose.yml` mapeando as portas definidas (8000:8000, 3000:3000, 5434:5434) e configurando os serviços para consumir os dados sensíveis via `env_file: - .env`.
+4. Crie o template de segredos para o banco de dados.
+// turbo
+echo -e "POSTGRES_USER=postgres\nPOSTGRES_PASSWORD=hmetal85\nPOSTGRES_DB=sigi_db" > .env.example && cp .env.example .env
 
-7. Torne o script da skill de pacotes (previamente definido) executável.
+5. Gere os arquivos `Dockerfile` dentro de `/backend` (porta 8000) e `/frontend` (porta 3000) baseados na spec.
+
+6. Gere o `docker-compose.yml` mapeando os serviços e as portas correspondentes.
+
+7. Conceda permissão de execução à skill de gerenciamento de pacotes.
 // turbo
 chmod +x .agent/skills/container-package-manager/install.sh
 
-8. Suba os contêineres construindo as imagens em background.
+8. Suba o ecossistema completo em background.
 // turbo
 docker compose up -d --build
 
-9. Valide o processo e informe ao usuário que as frentes do SIGI estão operando nas portas correspondentes e com os segredos blindados.
+9. Valide se os serviços estão rodando e informe ao usuário a conclusão do bootstrap.
