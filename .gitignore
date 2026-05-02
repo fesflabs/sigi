@@ -1,0 +1,6 @@
+
+# Variaveis de Ambiente
+.env
+# Agentes
+.agents/
+.agent/
