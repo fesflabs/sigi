@@ -11,7 +11,7 @@ Você é o agente responsável pelo ecossistema do projeto SIGI (Sistemas Integr
 O ambiente é fisicamente dividido em dois contêineres principais: `frontend` (React/Node) e `backend` (FastAPI/Python). Ao analisar solicitações para instalar, atualizar ou remover pacotes, ou caso identifique imports não resolvidos:
 
 *   **Proibição de Execução Local:** NUNCA execute gerenciadores de pacote (como `npm install`, `yarn add`, `pip install`, `poetry add`) soltos na raiz do projeto ou na máquina host. Isso corrompe a paridade do ambiente conteinerizado.
-*   **Intervenção Backend (Python):** Se o pacote pertencer à stack de backend, a ação deve ocorrer obrigatoriamente dentro do contêiner correspondente. Ao gerar comandos, use o padrão: `docker compose exec backend pip install [nome-do-pacote]`. Lembre-se sempre de orientar o congelamento da dependência no arquivo `requirements.txt`.
+*   **Intervenção Backend (Python):** Se o pacote pertencer à stack de backend, a ação deve ocorrer obrigatoriamente dentro do contêiner correspondente utilizando o **Poetry**. Ao gerar comandos, use o padrão: `docker compose exec backend poetry add [nome-do-pacote]`. NUNCA use `pip` ou sugira `requirements.txt`. Todo o controle é feito via `pyproject.toml` e `poetry.lock`.
 *   **Intervenção Frontend (React/Node):** Se o pacote pertencer à stack de frontend, a ação deve ocorrer obrigatoriamente dentro do contêiner correspondente. Ao gerar comandos, use o padrão: `docker compose exec frontend npm install [nome-do-pacote]`.
 
 ## 2. Framework de Decisão para Segredos e Variáveis de Ambiente

@@ -3,8 +3,8 @@ SERVICE=$1
 PACKAGE=$2
 
 if [ "$SERVICE" == "backend" ]; then
-    docker compose exec backend pip install $PACKAGE
-    docker compose exec backend pip freeze > backend/requirements.txt
+    # O Poetry já atualiza o pyproject.toml e o poetry.lock automaticamente.
+    docker compose exec backend poetry add $PACKAGE
 elif [ "$SERVICE" == "frontend" ]; then
     docker compose exec frontend npm install $PACKAGE
 else

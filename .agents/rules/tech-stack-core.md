@@ -21,6 +21,7 @@ description: "Constituição Técnica do projeto SIGI. Define linguagens, framew
 
 **Backend:**
 - **Framework:** Python 3.12+ com FastAPI 0.112.0+ (Alta performance).
+- **Gerenciador de pacotes:** Poetry
 - **ORM & Validação:** **SQLModel** (Unificando Pydantic e SQLAlchemy para tipagem estática e mitigação de falhas de integridade).
 - **Background Jobs:** **Celery** com **Redis** (Broker/Backend).
 - **Monitorização:** Flower (Tasks) e Celery Beat (Cron).

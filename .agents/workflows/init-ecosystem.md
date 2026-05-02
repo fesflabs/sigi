@@ -14,7 +14,7 @@ mkdir -p frontend backend
 
 3. Configure o arquivo `.gitignore` para bloquear credenciais e arquivos de ambiente do agente.
 // turbo
-echo -e "\n# Variaveis de Ambiente\n.env\n# Agentes\n.agent/" >> .gitignore
+echo -e "\n# Variaveis de Ambiente\n.env\n# Agentes\n.agent/\n# Poetry\n.venv\npoetry.lock" >> .gitignore
 
 4. Crie o template de segredos para o banco de dados.
 // turbo
