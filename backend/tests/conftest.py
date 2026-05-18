@@ -34,10 +34,10 @@ async def async_session() -> AsyncGenerator[AsyncSession, None]:
         connect_args={"check_same_thread": False}
     )
     
-    # Se os models estivessem definidos, poderíamos criar as tabelas:
-    # from sqlmodel import SQLModel
-    # async with engine.begin() as conn:
-    #     await conn.run_sync(SQLModel.metadata.create_all)
+    from sqlmodel import SQLModel
+    from app.modules.fleet.models import Driver, Vehicle, Reservation, ReservationDestination, ReservationPassenger
+    async with engine.begin() as conn:
+        await conn.run_sync(SQLModel.metadata.create_all)
 
     async_session_maker = sessionmaker(
         engine, class_=AsyncSession, expire_on_commit=False

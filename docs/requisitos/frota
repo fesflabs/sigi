@@ -1,0 +1,85 @@
+Desenvolver o backend do módulo de Gestão de Frota do #SIGI
+## Objetivo
+
+O sistema tem como objetivo realizar reserva de carros para atividades institucionais pelo trabalhadores da FESF e também gerenciar a frota e pedidos pelo responsável da FESF .
+
+## O módulo contém os perfis de usuários:
+1. Responsável pela logística
+		Perfil de usuário que faz a gestão da frota.
+2. Motorista
+		Perfil de usuário que realiza as viagens com a frota, pode visualizar as reservas que estão atreladas ao seu usuário.
+3. Trabalhad FESF
+		Perfil de usuário padrão do sistema. Ele tem o perfil básico de reservar veículo e visualizar suas reservas.
+
+O módulo contém:
+1. Uma tela inicial de dashboard
+	1. Quantidade de agendas reservas total
+	2. Quantidade de agendas aprovadas
+	3. Quantidades de agendas esperando aprovação total
+	4. Quantidade de agendas esperando aprovação esperando com atividade a ser realizadas em 24 horas.
+	5. Comparação de demandas por motoristas/carros
+	6. Comparação de destinos mais solicitados
+	7. Comparação de centro de custo mais solicitados
+2. Tela de cadastro de Motorista
+		Tela para o usuário com Perfil "Responsável pela Logística" cadastrar usuários com perfil "Motorista".
+	- Dados necessários para o cadastro:
+	  - Nome completo
+	  - Matrícula
+	  - Centro de Custo
+3. Tela de cadastro de veículos
+		- Marca
+		- Modelo
+		- Ano de Fabricação
+		- Ano do Modelo
+		- Quilometragem inicial
+		- Selecionar motorista
+4. Tela de reserva de carro para atividades institucionais
+	1. Tela para usuário FESF poder realizar reservas de carro com motorista para transporte em atividades institucionais
+	2. Campos:
+		- Solicitante: Pré-definido com usuário que está solicitando a reserva, mas é permitido modificar.
+		- Data da Inicio reserva: Via calendário
+		- Data Fim reserva: Via calendário
+		- Horário: Via calendário
+		- Origem
+		- Destino
+			- Pode haver mais um destino
+		- Atividade a se realizar
+		- Quantidade de Passageiros
+		- Usuário passageiros
+		- Observação:
+	- Calendário diário/semanal/mensal visualizar agenda consolidada.
+	- Critério mínimo: 12 horas de antecedência (Configurado pelo usuário)
+	- Critério máximo (configurado pelo usuário)
+5. Tela de acompanhamento de rotinas:
+	1. Gestão
+		1. Alocação da reserva ao carro/motorista
+		2. Edição de reserva
+		3. Guarda do histórico de edições
+		4. Agenda de diária de todos carros/motorista
+	2. Motorista
+		1. Alerta de confirmação de agenda 4 e 2 horas antes.
+		2. Agenda diária
+    3. Usuário FESF
+        1. Agenda diária, semanal e mensal
+6. Tela de Configurações
+	6.1 Tela de Usuários:
+		1. Dados
+		- Nome
+		- Centro de Custo
+		- Cargo
+		- Lotação
+		- Contato
+    6.2 Tela de Configurações Módulo de Gestão de Frota
+        1. Horários
+        - Horário Mínimo de antecedência
+        - Horário Máximo de antecedência
+        2. Critérios
+        - Critério de aceitação de agenda
+        - Critério de recusa de agenda
+Relatórios para impressão .pdf e .csv
+- Quantidade de Agendas total
+- Qtd por veículo
+- Qtd por Centro de Custo
+- Qtd. por Motorista
+- Qtd. por período
+
